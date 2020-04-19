@@ -18,3 +18,50 @@ public EmployeesController(IUnitOfWork unitOfWork)
 ## Sample code
 Check out the complete sample project [inside sample folder](https://github.com/abuzaforfagun/GenericUnitOfWork/tree/master/GenericUnitOfWork.Sample).
 
+
+### Basic uses of GenericUnitOfWork in controlelr
+
+```
+[Route("api/[controller]")]
+[ApiController]
+public class EmployeesController : ControllerBase
+{
+    private readonly IUnitOfWork _unitOfWork;
+
+    public EmployeesController(IUnitOfWork unitOfWork)
+    {
+        _unitOfWork = unitOfWork;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(Employee employee)
+    {
+        _unitOfWork.Repository<Employee>().Add(employee);
+        await _unitOfWork.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll() => Ok(await _unitOfWork.Repository<Employee>().GetAllAsync());
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(int id) => Ok(await _unitOfWork.Repository<Employee>().GetQuery().Include(e => e.Department).SingleAsync(e => e.Id == id));
+
+
+    [HttpPut]
+    public async Task<IActionResult> Update(Employee employee)
+    {
+        _unitOfWork.Repository<Employee>().Update(employee);
+        await _unitOfWork.SaveChangesAsync();
+        return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete(Employee employee)
+    {
+        _unitOfWork.Repository<Employee>().Remove(employee);
+        await _unitOfWork.SaveChangesAsync();
+        return Ok();
+    }
+}
+```
