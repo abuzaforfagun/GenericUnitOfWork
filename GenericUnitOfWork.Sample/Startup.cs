@@ -20,10 +20,9 @@ namespace GenericUnitOfWork.Sample
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddTransient(typeof(EntityRepository<,>), typeof(EntityRepository<,>));
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("db")));
             services.AddScoped<DbContext, AppDbContext>();
-            services.AddScoped<IUnitOfWork, UnitOfWork<AppDbContext>>();
+            services.AddUnitOfWork<AppDbContext>();
             
         }
 
