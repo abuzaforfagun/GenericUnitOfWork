@@ -3,7 +3,7 @@
 A .NETStandard package to plug and play with unit of work pattern in EntityFrameworkCore.
 
 ## Uses
-* Add the reference of the library or install nuget package.
+* Add the reference of the library or install [nuget package](https://www.nuget.org/packages/EntityFrameworkCore.GenericUnitOfWork/) following by ```Install-Package EntityFrameworkCore.GenericUnitOfWork``` command from visual studio package manager console or ```dotnet add package EntityFrameworkCore.GenericUnitOfWork``` from command line.
 * Register the library in ConfigureServices ```services.AddUnitOfWork<AppDbContext>();```. **AddUnitOfWork** is a generic method. You need to pass your database context.
 * Use **IUnitOfWork** using constractor dependency injection. 
 ```
