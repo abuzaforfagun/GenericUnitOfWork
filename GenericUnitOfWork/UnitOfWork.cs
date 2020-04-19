@@ -6,10 +6,10 @@ namespace GenericUnitOfWork
 {
     public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
-        protected readonly DbContext _dbContext;
+        protected readonly TDbContext _dbContext;
         protected readonly IServiceProvider _serviceProvider;
 
-        public UnitOfWork(DbContext context, IServiceProvider serviceProvider)
+        public UnitOfWork(TDbContext context, IServiceProvider serviceProvider)
         {
             _dbContext = context;
             _serviceProvider = serviceProvider;
