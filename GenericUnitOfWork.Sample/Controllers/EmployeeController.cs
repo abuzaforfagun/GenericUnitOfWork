@@ -12,7 +12,7 @@ namespace GenericUnitOfWork.Sample.Controllers
 
         public EmployeesController(IUnitOfWork unitOfWork)
 {
-            this._unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpPost]
