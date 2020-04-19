@@ -36,6 +36,16 @@ namespace GenericUnitOfWork
             return _dbSet.Find(id);
         }
 
+        public List<TEntity> GetAll()
+        {
+            return _dbSet.ToList();
+        }
+
+        public async Task<List<TEntity>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
         public async Task<TEntity> GetAsync<TIdentity>(TIdentity id)
         {
             return await _dbSet.FindAsync(id);

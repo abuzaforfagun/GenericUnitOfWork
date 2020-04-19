@@ -13,6 +13,10 @@ namespace GenericUnitOfWork
 
         Task AddRangeAsync(IEnumerable<TEntity> entity);
 
+        List<TEntity> GetAll();
+
+        Task<List<TEntity>> GetAllAsync();
+
         TEntity Get<TIdentity>(TIdentity id);
 
         Task<TEntity> GetAsync<TIdentity>(TIdentity id);
